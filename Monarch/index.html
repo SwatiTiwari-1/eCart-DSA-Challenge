@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TechMart — Product Explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">
+    <span class="brand-mark">TM</span>
+    <span class="brand-name">TechMart</span>
+  </div>
+  <nav class="tabs" id="tabs">
+    <button class="tab-btn active" data-view="catalog-view">Catalog</button>
+    <button class="tab-btn" data-view="cart-view">Cart <span id="cart-count-badge" class="badge" hidden>0</span></button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ===================== CATALOG ===================== -->
+  <section id="catalog-view" class="view active">
+    <div class="view-heading">
+      <h1>Browse products</h1>
+      <p class="subtle">Add anything to your cart, then head to the Cart tab to try Undo / Redo.</p>
+    </div>
+    <div class="chip-row" id="category-chips"></div>
+    <div class="product-grid" id="product-grid"></div>
+  </section>
+
+  <!-- ===================== CART (Challenge 4) ===================== -->
+  <section id="cart-view" class="view">
+    <div class="view-heading">
+      <h1>Your cart</h1>
+      <p class="subtle">Every add, remove and quantity change is reversible — try Undo / Redo.</p>
+    </div>
+
+    <div class="cart-toolbar">
+      <div class="history-controls">
+        <button id="undo-btn" class="btn btn-ghost" disabled>↶ Undo</button>
+        <button id="redo-btn" class="btn btn-ghost" disabled>↷ Redo</button>
+      </div>
+      <div class="cart-summary">
+        <span id="cart-item-count">0 items</span>
+        <span class="divider">·</span>
+        <span id="cart-total">₹0</span>
+      </div>
+    </div>
+
+    <div class="cart-layout">
+      <div id="cart-items" class="cart-items"></div>
+
+      <aside class="op-history">
+        <h3>Operation history</h3>
+        <ul id="op-history-list" class="op-history-list"></ul>
+      </aside>
+    </div>
+  </section>
+
+</main>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="js/data.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/features/cart.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
