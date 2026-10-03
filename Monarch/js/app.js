@@ -37,6 +37,7 @@ function renderProductGrid(categoryFilter) {
       buildProductCard(product, (p) => {
         cart.addProduct(p);
         showToast(`Added ${p.name} to cart`);
+        renderRecommendations();
       })
     );
   });
@@ -55,10 +56,32 @@ function setupTabs() {
 }
 
 function setupCartControls() {
-  document.getElementById("undo-btn").addEventListener("click", () => cart.undo());
-  document.getElementById("redo-btn").addEventListener("click", () => cart.redo());
+  document.getElementById("undo-btn").addEventListener("click", () => {
+    cart.undo();
+    renderRecommendations();
+  });
+  document.getElementById("redo-btn").addEventListener("click", () => {
+    cart.redo();
+    renderRecommendations();
+  });
 }
 
+function setupPriceFinderControls() {
+  document.getElementById("find-closest-btn").addEventListener("click", handleFindClosest);
+  document.getElementById("find-range-btn").addEventListener("click", handleFindInRange);
+  handleFindClosest();
+  handleFindInRange();
+}
+
+function setupWarehouseControls() {
+  renderWarehouseCandidates();
+  document.getElementById("optimize-btn").addEventListener("click", handleOptimize);
+}
+
+function setupDeliveryControls() {
+  populateLocationSelects();
+  document.getElementById("find-route-btn").addEventListener("click", handleFindRoute);
+}
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -67,6 +90,9 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCart(cart); // initial empty-cart state
   renderRecommendations();
   setupTabs();
+  setupPriceFinderControls();
   setupCartControls();
+  setupWarehouseControls();
+  setupDeliveryControls();
   document.getElementById("refresh-recs-btn").addEventListener("click", renderRecommendations);
 });
