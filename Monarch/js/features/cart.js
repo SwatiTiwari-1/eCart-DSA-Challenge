@@ -172,6 +172,7 @@ class Cart {
 
   _render() {
     renderCart(this);
+    renderRecommendations();
   }
 }
 

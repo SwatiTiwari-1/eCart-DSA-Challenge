@@ -65,6 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCategoryChips();
   renderProductGrid("All");
   renderCart(cart); // initial empty-cart state
+  renderRecommendations();
   setupTabs();
   setupCartControls();
+  document.getElementById("refresh-recs-btn").addEventListener("click", renderRecommendations);
 });
